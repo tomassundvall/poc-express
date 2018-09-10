@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+
+  web:
+    image: node:8.11.3-slim
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app/web
+    ports:
+      - 3000:3000
+    command: npm start
+
+  cmd:
+    build:
+      context: .
+      dockerfile: devenv.Dockerfile
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app
+    command: /bin/bash
