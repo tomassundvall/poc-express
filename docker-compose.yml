@@ -11,11 +11,16 @@ services:
       - 3000:3000
     command: npm start
 
-  cmd:
-    build:
-      context: .
-      dockerfile: devenv.Dockerfile
+  test:
+    image: node:8.11.3-slim
     volumes:
       - ./:/home/node/app
-    working_dir: /home/node/app
+    working_dir: /home/node/app/web
+    command: npm test
+
+  cmd:
+    image: node:8.11.3-slim
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app/web
     command: /bin/bash
